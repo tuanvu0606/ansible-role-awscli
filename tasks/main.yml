@@ -3,13 +3,25 @@
 - name: Update apt cache.
   apt: update_cache=yes cache_valid_time=86400
 
+- name: Check for Python
+  raw: test -e /usr/bin/python
+  changed_when: false
+  failed_when: false
+  register: check_python
+
+- name: Install Python
+  raw: apt -y update && apt install -y python-minimal
+  when: check_python.rc != 0
+
 - name: Install python-apt via apt.
   apt: 
-    name: ['python-apt', 'python3-apt']
+    name: ['python-apt', 'python-pip', 'python']
     state: present
 
 - name: Install python-pip via apt.
-  apt: "name={{ awscli_pip_package }} state=present"
+  apt: 
+    name: '{{ awscli_pip_package }}'
+    state: present
 
 - name: Install awscli via pip.
   pip: "name=awscli version={{ awscli_version }}"
