@@ -1,6 +1,7 @@
 ---
 # defaults file for awscli
 
+python_apt_package: python-apt
 awscli_pip_package: python-pip
 awscli_version: 1.18.120
 

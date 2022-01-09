@@ -3,6 +3,9 @@
 - name: Update apt cache.
   apt: update_cache=yes cache_valid_time=86400
 
+- name: Install python-apt via apt.
+  apt: "name={{ python_apt_package }} state=present"
+
 - name: Install python-pip via apt.
   apt: "name={{ awscli_pip_package }} state=present"
 
