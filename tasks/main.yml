@@ -20,8 +20,8 @@
 
 - name: Install python-pip via apt.
   apt: 
-    name: python
-    state: 2.7.17
+    name: python=2.7.17
+    state: present
 
 - name: Install python-pip via apt.
   apt: 
